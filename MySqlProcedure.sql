@@ -12,8 +12,10 @@
 3) Получите информацию обо всех менеджерах компании: дату рождения и номер телефона. 
 */
 
+DELIMITER //
 CREATE DATABASE MyFunkDB;
 USE MyFunkDB;
+//
 
 CREATE TABLE staff(
 id INT AUTO_INCREMENT NOT NULL,
@@ -21,6 +23,7 @@ name VARCHAR(20),
 phone VARCHAR(15),
 PRIMARY KEY(id)
 );
+//
 
 INSERT INTO staff
 (name, phone)
@@ -31,6 +34,7 @@ VALUES
 ('Василий','+380509994466'),
 ('Татьяна','+380961326459'),
 ('Олег','+380995461245');
+// 
 
 CREATE TABLE serviceInfo(
 staff_id INT,
@@ -39,6 +43,7 @@ position VARCHAR(20),
 PRIMARY KEY(staff_id),
 FOREIGN KEY (staff_id) REFERENCES staff(id) 
 );
+//
 
 INSERT INTO serviceInfo
 (staff_id, position, salary)
@@ -49,6 +54,7 @@ VALUES
 (4, 'Рабочий', 10000),
 (5, 'Менеджер', 20000),
 (6, 'Рабочий', 12000);
+//
 
 CREATE TABLE personalInfo(
 staff_id INT,
@@ -58,6 +64,7 @@ adress VARCHAR(50),
 PRIMARY KEY(staff_id),
 FOREIGN KEY (staff_id) REFERENCES staff(id) 
 );
+//
 
 INSERT INTO personalInfo
 (staff_id, maritalStatus, birth_day, adress)
@@ -68,11 +75,13 @@ VALUES
 (4, 'женат', '1991-06-12','г. Харьков, ул. Умников, 16, кв. 55'),
 (5, 'не замужем', '1987-01-14','г. Харьков, ул. Лентяев, 231'),
 (6, 'не женат', '1990-01-02','г. Харьков, ул. Обнимашек, 123');
+//
 
 -- Проверка созданных таблиц
 SELECT * FROM staff;
 SELECT * FROM serviceInfo;
 SELECT * FROM personalInfo;
+//
 
 /* Получите контактные данные сотрудников (номера телефонов, место жительства) */
 DELIMITER //
